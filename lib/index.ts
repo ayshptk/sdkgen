@@ -7,11 +7,7 @@ import path from "path";
 import chalk from "chalk";
 import fs from "fs";
 var generate = require("project-name-generator");
-const args = process.argv.slice(2);
-inquirer.registerPrompt(
-  "autocomplete",
-  require("inquirer-autocomplete-prompt")
-);
+
 console.clear();
 let keys: any = {};
 try {

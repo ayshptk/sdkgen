@@ -1,11 +1,9 @@
 import path from "path";
-import { execSync } from "child_process";
+import { exec } from "child_process";
 import inquirer from "inquirer";
 import chalk from "chalk";
 import fs from "fs";
 import fetch from "node-fetch";
-import zipper from "node-stream-zip";
-const { exec } = require("child_process");
 
 function overwriteKeys(keys: any) {
   fs.writeFileSync(
@@ -96,17 +94,20 @@ export async function handler(answers: any, keys: any) {
           fs.mkdirSync(path.resolve("sdk/src"));
           await write(f, files[f]);
         });
-        exec(`cd sdk && ${response.install}`, (error: any, stdout: any, stderr: any) => {
-          if (error) {
-            console.log(chalk.red(error));
-            return;
+        exec(
+          `cd sdk && ${response.install}`,
+          (error: any, stdout: any, stderr: any) => {
+            if (error) {
+              console.log(chalk.red(error));
+              return;
+            }
+            if (stderr) {
+              console.log(chalk.red(` ${stderr}`));
+              return;
+            }
+            console.log(chalk.gray(`${stdout}`));
           }
-          if (stderr) {
-            console.log(chalk.red(` ${stderr}`));
-            return;
-          }
-          console.log(chalk.gray(`${stdout}`));
-        });
+        );
       } else {
         console.log(chalk.red("Operation cancelled by user"));
       }
