@@ -95,7 +95,7 @@ export async function handler(answers: any, keys: any) {
           await write(f, files[f]);
         });
         exec(
-          `cd sdk && ${response.install}`,
+          `cd sdkgen && ${response.install}`,
           (error: any, stdout: any, stderr: any) => {
             if (error) {
               console.log(chalk.red(error));
