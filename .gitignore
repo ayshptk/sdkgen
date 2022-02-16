@@ -3,3 +3,4 @@ bin/sdkgen_keys.json
 .DS_Store
 package-lock.json
 yarn.lock
+sdk

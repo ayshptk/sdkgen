@@ -131,12 +131,10 @@ function handler(answers, keys) {
                                             headers: {
                                                 "Content-Type": "application/json",
                                                 key: keys["token"],
-                                                etherscan: keys["etherscanApi"],
                                             },
                                             body: JSON.stringify({
-                                                name: name,
                                                 address: contract,
-                                                chain: chain,
+                                                etherscan: keys["etherscanApi"],
                                             }),
                                         }).then(function (res) {
                                             return res.json();
@@ -152,8 +150,11 @@ function handler(answers, keys) {
                                         return __generator(this, function (_a) {
                                             switch (_a.label) {
                                                 case 0:
-                                                    fs_1.default.mkdirSync(path_1.default.resolve("sdk"));
-                                                    fs_1.default.mkdirSync(path_1.default.resolve("sdk/src"));
+                                                    if (fs_1.default.existsSync(path_1.default.resolve("./", "sdkgen"))) {
+                                                        fs_1.default.rmdirSync(path_1.default.resolve("./", "sdkgen"), { recursive: true });
+                                                    }
+                                                    fs_1.default.mkdirSync(path_1.default.resolve("sdkgen"));
+                                                    fs_1.default.mkdirSync(path_1.default.resolve("sdkgen/src"));
                                                     return [4 /*yield*/, write(f, files_1[f])];
                                                 case 1:
                                                     _a.sent();
@@ -190,7 +191,7 @@ function write(file, data) {
     return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, fs_1.default.writeFileSync(path_1.default.resolve("./", "sdk", file), data)];
+                case 0: return [4 /*yield*/, fs_1.default.writeFileSync(path_1.default.resolve("./", "sdkgen", file), data)];
                 case 1:
                     _a.sent();
                     return [2 /*return*/];

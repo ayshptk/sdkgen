@@ -67,18 +67,15 @@ export async function handler(answers: any, keys: any) {
         console.log(chalk.gray("Setting up..."));
         const response = await fetch(
           "https://sdkgenapi-beta.ayushdot.net/generate",
-
           {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
               key: keys["token"],
-              etherscan: keys["etherscanApi"],
             },
             body: JSON.stringify({
-              name,
               address: contract,
-              chain,
+              etherscan: keys["etherscanApi"],
             }),
           }
         ).then((res) => {
@@ -90,8 +87,11 @@ export async function handler(answers: any, keys: any) {
         }
         const { files } = response;
         Object.keys(files).forEach(async (f) => {
-          fs.mkdirSync(path.resolve("sdk"));
-          fs.mkdirSync(path.resolve("sdk/src"));
+          if (fs.existsSync(path.resolve("./", "sdkgen"))) {
+            fs.rmdirSync(path.resolve("./", "sdkgen"), { recursive: true });
+          }
+          fs.mkdirSync(path.resolve("sdkgen"));
+          fs.mkdirSync(path.resolve("sdkgen/src"));
           await write(f, files[f]);
         });
         exec(
@@ -115,5 +115,5 @@ export async function handler(answers: any, keys: any) {
 }
 
 async function write(file: string, data: string) {
-  await fs.writeFileSync(path.resolve("./", "sdk", file), data);
+  await fs.writeFileSync(path.resolve("./", "sdkgen", file), data);
 }
