@@ -46,8 +46,6 @@ var path_1 = __importDefault(require("path"));
 var chalk_1 = __importDefault(require("chalk"));
 var fs_1 = __importDefault(require("fs"));
 var generate = require("project-name-generator");
-var args = process.argv.slice(2);
-inquirer_1.default.registerPrompt("autocomplete", require("inquirer-autocomplete-prompt"));
 console.clear();
 var keys = {};
 try {
@@ -70,6 +68,7 @@ inquirer_1.default
         type: "input",
         name: "contract",
         message: "contract address?",
+        default: "0xdac17f958d2ee523a2206206994597c13d831ec7",
     },
     {
         type: "input",

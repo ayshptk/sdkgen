@@ -41,6 +41,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.handler = void 0;
 var path_1 = __importDefault(require("path"));
+var child_process_1 = require("child_process");
 var inquirer_1 = __importDefault(require("inquirer"));
 var chalk_1 = __importDefault(require("chalk"));
 var fs_1 = __importDefault(require("fs"));
@@ -160,6 +161,17 @@ function handler(answers, keys) {
                                             }
                                         });
                                     }); });
+                                    (0, child_process_1.exec)("cd sdk && ".concat(response.install), function (error, stdout, stderr) {
+                                        if (error) {
+                                            console.log(chalk_1.default.red(error));
+                                            return;
+                                        }
+                                        if (stderr) {
+                                            console.log(chalk_1.default.red(" ".concat(stderr)));
+                                            return;
+                                        }
+                                        console.log(chalk_1.default.gray("".concat(stdout)));
+                                    });
                                     return [3 /*break*/, 3];
                                 case 2:
                                     console.log(chalk_1.default.red("Operation cancelled by user"));
