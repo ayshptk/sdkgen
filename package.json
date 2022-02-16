@@ -1,6 +1,6 @@
 {
   "name": "@ayshptk/sdkgen",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "an experiment to create barebones js SDKs from just a smart contract address",
   "main": "dist/index.js",
   "directories": {
