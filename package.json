@@ -1,11 +1,11 @@
 {
   "name": "@ayshptk/sdkgen",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "an experiment to create barebones js SDKs from just a smart contract address",
   "main": "dist/index.js",
   "directories": {
     "lib": "lib"
-  }, 
+  },
   "scripts": {
     "dev": "yarn build && sudo npm i . -g --force",
     "build": "tsc -p ."
