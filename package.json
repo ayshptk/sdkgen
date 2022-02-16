@@ -1,0 +1,39 @@
+{
+  "name": "sdkgen",
+  "version": "0.1.0",
+  "description": "create sdks on the fly ",
+  "main": "dist/index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "dev": "yarn build && sudo npm i . -g --force",
+    "build": "tsc -p ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ayshptk/sdkgen.git"
+  },
+  "bin": {
+    "sdkgen": "./bin/index.js"
+  },
+  "author": "ayush <hey@ayush.sh> (https://ayush.sh)",
+  "bugs": {
+    "url": "https://github.com/ayshptk/sdkgenp/issues"
+  },
+  "homepage": "https://github.com/ayshptk/sdkgenp#readme",
+  "dependencies": {
+    "chalk": "4.1.2",
+    "inquirer": "^8.2.0",
+    "inquirer-autocomplete-prompt": "^1.4.0",
+    "node-fetch": "^2.6.7",
+    "node-stream-zip": "^1.15.0",
+    "project-name-generator": "^2.1.9"
+  },
+  "devDependencies": {
+    "@types/inquirer": "^8.2.0",
+    "@types/node-fetch": "2",
+    "@types/unzipper": "^0.10.5",
+    "typescript": "^4.4.3"
+  }
+}
